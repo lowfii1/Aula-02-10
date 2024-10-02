@@ -1,0 +1,183 @@
+/*
+int idade = 35;
+Console.WriteLine($"A idade do mário é{idade}");
+// Váriaveis signed permite números negativos e assigned não permitem
+sbyte pessoas = -128; // =128 ~ = 127 - 0 255(256) 2*8 com sinal
+byte joias = 255; // Não pode têm sinal logo só poder ser positiva
+short malas = 32767; //store whole numbers in the range of - 32,768 to 32,767, 2*16
+ushort telas = 65535; // O maximo é 65635 e o minimo é 0
+int pcs = -2147483648;// o int é 2 elevado a 32, dando -2.147.483.648 e 2.147.483.647
+uint malhas = 4294967295;// Aceita no máximo 4.294.967.296
+long estrelas = -922337236854775808; // Aceita no máximo 922337236854775807 e no mínimo -922337236854775808
+ulong planetas = 1844674473709551614; // Aecita no máximo 1844674473709551614
+                                      //variáveis de ponto flutuante
+                                      // Pontos flutuantes têm casas decimais depois da virgula
+float numero1 = 0.421423424242421234F; //Float é para números decimais aceita 32 bits depois da virgula
+double numero = 0.0D; // double é para números decimais aceita 64 bits depois da virgula
+decimal decimalzinho = 0.2133333334323423423424234234242424242M; //  decimal aceita 128 bits depois da virgula
+                                                                 // Váriaveis  teste lógicas
+bool teste = true; // Aceita verdadeiro ou falso
+                   //Operadores aritméticos no C#
+Console.WriteLine(5 - 6);
+Console.WriteLine(5 + 6);
+Console.WriteLine(5 * 6);
+Console.WriteLine((5 / 6).ToString("#0.00"));// Usamos todos esses parenteses por que to string não cabe no console.writeline
+Console.WriteLine($" 5 mod 2 -> {5 % 2}");
+int a = 0;
+Console.WriteLine($" a++{a++}");// Mostra no instante antes da adição então 0, das duas forma o valor final sera +1 o que muda 
+                                // é o tempo que ele mostra a++ é antes e o ++aa é depois da adição
+Console.WriteLine($" a++{++a}");// Mostra o resultado da adição então 1
+
+Console.WriteLine();
+
+Console.WriteLine(Math.Pow(5, 6)); // Aqui usando a clase math que têm vários funções de matématicas nesse caso o pow
+                                   // O pow retorna uma valor da raiz
+double valor = 125.98;
+valor += 10; //valor = valor + 10/ atribuição composta
+
+
+Console.WriteLine(valor.ToString("#0.00"));// Limita a quantidade de números que aparece
+Console.WriteLine(5.0 * 2.0 - 7.0 / 4.0 + 3.0);// Precedência de operadores
+
+Console.WriteLine();
+
+Console.WriteLine("Tabuada");
+int num = 7;
+int cont = 0;
+while (cont < 11)
+{
+    Console.WriteLine($" {num} x {cont++} = {num * (++cont + 1)} ");
+}
+//Raiz quadrada
+Console.WriteLine($"Raiz quadrado de 144 ==> {Math.Sqrt(144)}");// Mostra a raiz quadrada
+Console.WriteLine($"Raiz quadrado de 144 ==> {Math.Pow(144, 0.5)}");
+
+// Matrizes
+int[] m = { 1, 3, 8, 7 };// Isso aqui é uma matrix auto-declara com atribuição
+int i = 0;
+Console.WriteLine(m[i++]);
+Console.WriteLine(m[i++]);
+Console.WriteLine(m[i++]);
+Console.WriteLine(m[i]);
+
+int[] mx = new int[5];
+mx[0] = 13;
+mx[1] = 23;
+mx[2] = 33;
+mx[3] = 43;
+mx[4] = 53;
+foreach (var item in mx) //  Foreach = Para cada 
+{
+
+    Console.WriteLine(item); // Aqui nesse código usando o foreach atribuimos cada valor da matriz mx para a váriavel item 
+}
+
+//matrizes
+int[,] mat = new int[5, 5]; //matriz de duas dimensões, colunas e  linhas
+mat[0, 0] = 65;
+Console.WriteLine($"Resultado => {mat[0, 0]}");
+
+//Prencher a matriz de 5x5
+Random random = new Random(); // Um objeto para valores aléatorios
+                              //Criação do laço da linha da matriz 
+for (int l = 0; l < 5; l++) //for = para faca
+{
+    for (int c = 0; c < 5; c++)// Aqui nesse código fizemos um loop, o l só vai mudar quando terminar o loop do c
+    {//Aqui selecionamos a variaveis da linha e coluna da matriz,
+        mat[l, c] = random.Next(1, 9);//Limita os valores que apareça no ramdom
+
+    }
+
+
+}
+Console.WriteLine();
+int dp = 0, di = 0, sl = 0, sc = 0; // Variável da diagonal principal
+int[] smcoluna = new int[5]; // Matriz de uma dimensão para a  linha
+                             //exibir a matriz de 5x5    
+for (int l = 0; l < 5; l++)
+
+{
+    for (int c = 0; c < 5; c++)
+    {
+        Console.Write($" {mat[l, c]}  ");
+
+
+        if (l == c) dp += mat[l, c];// Nós fizemos o l=c para soma da diagonal principal
+        if (l + c == 4) di = di += mat[l, c]; // Aqui nessa vez nossa diagonal invertida é a soma da linha e coluna = 4 então toda vez que for igual
+                                              //a 4 há a soma de di com a matriz
+        sl += mat[l, c];// Somar de todas linhas da matriz
+        sc += mat[c, l];// Somar das colunas da matriz
+
+    }
+    smcoluna[l] = sc;
+    sc = 0;
+    Console.WriteLine($"-> {sl}");
+    sl = 0;
+    Console.WriteLine();// Só para pular  a linha
+}
+for (int k = 0; k < 5; k++)
+{
+    Console.Write($" \\/ ");
+}
+Console.WriteLine();
+for (int k = 0; k < 5; k++)
+{
+
+    Console.Write($" {smcoluna[k]} ");
+}
+Console.WriteLine();
+
+
+Console.WriteLine();
+Console.WriteLine($" Diagonal principal = {dp} ");
+Console.WriteLine($" Diagonal invertida = {di} ");
+
+Console.WriteLine();
+
+//
+Array array;
+int[] ti = new int[10];
+for (int c = 0; c < 10; c++)
+{
+    ti[c] = random.Next(1, 7);
+}
+Console.WriteLine("--------------Matriz----------------");
+//Array.sort recebe um valor de inteiro(nessa caso a matriz) e organiza do menor para o maior, o metodo também não retorna valor
+Array.Sort(ti);//Aqui nós ordenamos os valores na matriz TI
+int index = Array.IndexOf(ti, 7);
+Console.WriteLine(" o valor '7' está na posição:" + (index > -1 ? index : "Não existe"));
+for (int j = 0; j < 10; j++)
+{
+    Console.WriteLine(ti[j]);
+}
+
+//
+
+object[] conteudos = new object[10];
+conteudos[0] = ti;
+conteudos[1] = estrelas;
+conteudos[3] = mat;
+
+*/
+    // manipulando Strings
+
+    string texto = "    Senac Itaquera  ";
+    string email = "soraialipe@gmail.com";
+    Console.WriteLine(texto + email); // concatenar string
+    Console.WriteLine(texto.Contains('j'));
+    Console.WriteLine(texto.IndexOf('c'));
+    texto = texto.Trim(); // apaga espaços do começo e fim
+    Console.WriteLine(texto.IndexOf('c'));
+    Console.WriteLine(texto.Remove(5)); // apaga depois da posição que foi citada.
+    Console.WriteLine(texto.Remove(3,4)); // apaga o intervalo que for mencionado.
+    Console.WriteLine(texto.Replace('a','*'));                  // o primeiro número é o indice de partida.
+    Console.WriteLine(texto.Replace('a', '*'));
+    Console.WriteLine(texto.Replace("enac","****"));
+    var mtzTexto = texto.Split(' '); // retorna matriz de string
+    Console.WriteLine(mtzTexto[1]);
+    Console.WriteLine(texto.Substring(3,2));
+    Console.WriteLine(texto.ToLower()); // letras minusculas 
+    Console.WriteLine(texto.ToUpper()); // letra maiúsculas
+    Console.WriteLine(texto.ToString());
+
+Console.ReadKey();
